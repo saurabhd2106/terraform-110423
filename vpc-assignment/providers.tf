@@ -21,3 +21,32 @@ terraform {
 provider "aws" {
   # Configuration options
 }
+
+provider "vault" {
+
+  address = "http://127.0.0.1:8200"
+
+  token = "hvs.dQLzvVV1N7nWtKQKN5b5vdIy"
+  
+}
+
+data "vault_generic_secret" "demo" {
+
+  path = "secret/aws_secret" 
+
+}
+
+output "access_key" {
+
+  value = data.vault_generic_secret.demo.data.access_key
+
+  sensitive = true
+}
+
+output "secret_key" {
+
+  value = data.vault_generic_secret.demo.data.secret_key
+
+  sensitive = true
+
+}

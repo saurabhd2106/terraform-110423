@@ -8,6 +8,8 @@ resource "aws_subnet" "public_subnet" {
   tags = {
     Name = "public_subnet-${var.name}"
   }
+
+  
 }
 
 
